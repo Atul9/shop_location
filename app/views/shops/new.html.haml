@@ -1,0 +1,20 @@
+.mid-form
+  = simple_nested_form_for @shop, html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f|
+    = f.input :name
+    = f.input :address
+    = f.simple_fields_for :pictures, @shop.pictures do |pic|
+      = pic.input :shop_image, as: :file
+    = f.link_to_add 'Add More Picture', :pictures, id: 'add_picture', class: 'btn btn-primary'
+    = f.input :description
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Cancel', root_path, class: 'btn btn-danger'
+  #map{:style => "width: 550px; height: 350px;"}
+    %script{src: "https://maps.googleapis.com/maps/api/js"}
+:javascript
+  handler = Gmaps.build('Google', { markers: { maxRandomDistance: null } });
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+

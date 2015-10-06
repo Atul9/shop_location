@@ -1,0 +1,8 @@
+.navbar.navbar-inverse.navbar-static-top
+  .navbar-header
+    = link_to 'Home', '#', class: 'navbar-brand'
+  .collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      %li= link_to 'New Shop Registration', new_shop_path
+    %ul.nav.navbar-nav
+      %li= link_to "Locations", root_path
